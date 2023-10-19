@@ -22,8 +22,8 @@ public class MenuButtons : MonoBehaviour
         Debug.Log("Exit button pressed");
     }
 
-    public void OnClickCredentialsButton()
+    public void OnClickAboutButton()
     {
-        Debug.Log("Credentials button pressed");
+        Debug.Log("About button pressed");
     }
 }
