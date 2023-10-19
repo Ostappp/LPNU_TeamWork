@@ -23,31 +23,31 @@ public class LayerManager : MonoBehaviour
 
     public void OpenPlayLayer()
     {
-        OpenLayer(aboutLayer);
+        OpenLayer(playLayer);
     }
 
     public void ClosePlayLayer()
     {
-        CloseLayer(aboutLayer);
+        CloseLayer(playLayer);
     }
 
     public void OpenSettingsLayer()
     {
-        OpenLayer(aboutLayer);
+        OpenLayer(setttingsLayer);
     }
 
     public void CloseSettingsLayer()
     {
-        CloseLayer(aboutLayer);
+        CloseLayer(setttingsLayer);
     }
     public void OpenStoreLayer()
     {
-        OpenLayer(aboutLayer);
+        OpenLayer(storeLayer);
     }
 
     public void CloseStoreLayer()
     {
-        CloseLayer(aboutLayer);
+        CloseLayer(storeLayer);
     }
     public void OpenAboutLayer()
     {
