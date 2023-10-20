@@ -20,6 +20,7 @@ public class MenuButtons : MonoBehaviour
     public void OnClickExitButton()
     {
         Debug.Log("Exit button pressed");
+        Application.Quit();
     }
 
     public void OnClickAboutButton()
