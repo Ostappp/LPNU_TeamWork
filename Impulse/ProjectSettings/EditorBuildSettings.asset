@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels Scene/Level one (Forest).unity
     guid: ba6a6d9703c1eb54f817c8194371e84c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels Scene/Level two (Space).unity
     guid: 70ae2ef85eef25b4c9ee0eeb18cdec1d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels Scene/Level three (Winter).unity
     guid: 973b423534617984093f6117988c08ec
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels Scene/Level four (Halloween)).unity
     guid: f9a73e96fba9eed40b1c07e211d75bbd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels Scene/Level five (City).unity
     guid: d9222628aecc88d4b9aa364dc0c51e07
   m_configObjects: {}
