@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
+  - TrackingObject
+  - Actors
+  - Teleport
+  - Obstacle
   layers:
   - Default
   - TransparentFX
