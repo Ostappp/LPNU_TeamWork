@@ -19,26 +19,26 @@ public class SoundSettings : MonoBehaviour
         Environment.InputField.text = SettingsManager.Instance.GetEnvironmentValue().ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
 
 
-        Volume.MuteButton.SetOriginalIcon(SettingsManager.Instance.IsVolumeMuted());
-        Music.MuteButton.SetOriginalIcon(SettingsManager.Instance.IsMusicMuted());
-        Environment.MuteButton.SetOriginalIcon(SettingsManager.Instance.IsEnvironmentMuted());
+        Volume.MuteButton.SetOriginalIcon(!SettingsManager.Instance.IsVolumeMuted());
+        Music.MuteButton.SetOriginalIcon(!SettingsManager.Instance.IsMusicMuted());
+        Environment.MuteButton.SetOriginalIcon(!SettingsManager.Instance.IsEnvironmentMuted());
 
     }
 
     public void InputValue_Volume()
     {
         ChangeValueFromInputField(Volume.InputField, Volume.Slider);
-        SettingsManager.Instance.SetVolumeValue(float.Parse(Volume.InputField.text));
+        SettingsManager.Instance.SetVolumeValue(Volume.Slider.value);
     }
     public void InputValue_Music()
     {
         ChangeValueFromInputField(Music.InputField, Music.Slider);
-        SettingsManager.Instance.SetMusicValue(float.Parse(Music.InputField.text));
+        SettingsManager.Instance.SetMusicValue(Music.Slider.value);
     }
     public void InputValue_Environment()
     {
         ChangeValueFromInputField(Environment.InputField, Environment.Slider);
-        SettingsManager.Instance.SetEnvironmentValue(float.Parse(Environment.InputField.text));
+        SettingsManager.Instance.SetEnvironmentValue(Environment.Slider.value);
     }
 
     public void ChangeValue_Volume()
