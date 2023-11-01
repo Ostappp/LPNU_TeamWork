@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,19 +9,32 @@ public class PlayerMovement : MonoBehaviour
     public int currentLane = 2; // Початковий ряд, де персонаж розташований
     public int maxLanes = 5; // Кількість доступних рядів 
 
+    private bool isPause;
+    public GameObject PauseMenu;
+
+    private void Start()
+    {
+        PauseMenu.SetActive(false);
+    }
     private void Update()
     {
         // Переміщення вліво
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && currentLane > 0)
         {
             MoveToLane(currentLane - 1);
-            UnityEngine.Debug.Log("Move left");
+            Debug.Log("Move left");
         }
         // Переміщення вправо
         if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && currentLane < maxLanes - 1)
         {
             MoveToLane(currentLane + 1);
-            UnityEngine.Debug.Log("Move right");
+            Debug.Log("Move right");
+        }
+        //пауза
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+            Debug.Log("Move right");
         }
     }
 
@@ -31,5 +45,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetPosition = new Vector3(transform.position.x + xOffset, transform.position.y, transform.position.z);
         transform.position = targetPosition;
         currentLane = targetLane;
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseMenu.SetActive(true);
+        isPause = !isPause;
+    }
+    public void UnPauseGame()
+    {
+        PauseMenu.SetActive(false);
+        isPause = !isPause;
+        Time.timeScale = 1;
     }
 }
