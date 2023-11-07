@@ -9,6 +9,7 @@ TagManager:
   - Actors
   - Teleport
   - Obstacle
+  - StoreCurrency
   layers:
   - Default
   - TransparentFX
