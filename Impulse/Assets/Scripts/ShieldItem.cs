@@ -30,13 +30,14 @@ public class ShieldItem : MonoBehaviour
         }
         
         Destroy(gameObject,0.2f);
+        Debug.Log("Shield destroyed");
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (_objCollider != null && collision.transform.tag == "Obstacle")
+        if (_objCollider != null && other.tag == "Obstacle")
         {
-            collision.gameObject.SetActive(false);
-            
+            other.gameObject.SetActive(false);
+            DestroyShield();
         }
     }
 }
