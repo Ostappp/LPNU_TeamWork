@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,9 +13,18 @@ public class PlayerMovement : MonoBehaviour
     private bool isPause;
     public GameObject PauseMenu;
 
+    public AudioClip DestroySound;
+    private AudioSource SoundSource;
+    private Collider _objCollider;
+
+    public Action PlayerLoose;
+    public Action PlayerWin;
     private void Start()
     {
         PauseMenu.SetActive(false);
+        _objCollider = GetComponent<Collider>();
+        SoundSource = GetComponent<AudioSource>();
+        
     }
     private void Update()
     {
@@ -57,5 +67,30 @@ public class PlayerMovement : MonoBehaviour
         PauseMenu.SetActive(false);
         isPause = !isPause;
         Time.timeScale = 1;
+    }
+    private void StopPlayer()
+    {
+        if (DestroySound != null)
+        {
+            SoundSource.clip = DestroySound;
+            SoundSource.loop = false;
+        }
+
+        GetComponent<CubeMovement>().enabled = false;
+        Debug.Log("Player loose");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_objCollider != null && other.tag == "Obstacle")
+        {
+            other.gameObject.SetActive(false);
+            StopPlayer();
+            PlayerLoose?.Invoke();
+        }
+        else if (_objCollider != null && other.tag == "Teleport")
+        {
+            StopPlayer();
+            PlayerWin?.Invoke();
+        }
     }
 }
