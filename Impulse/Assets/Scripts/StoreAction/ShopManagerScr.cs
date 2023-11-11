@@ -27,6 +27,7 @@ public class ShopManagerScr : MonoBehaviour
         {
             int quantity = PlayerPrefs.GetInt("Item_" + shopItems[i].ID + "_Quantity", 0);
             shopItems[i].Quantity = quantity;
+
         }
     }
 
@@ -53,7 +54,6 @@ public class ShopManagerScr : MonoBehaviour
         }
     }
 
-
     public void IncreaseQuantity(int ItemID)
     {
         int index = System.Array.FindIndex(shopItems, x => x.ID == ItemID);
@@ -73,4 +73,5 @@ public class ShopManagerScr : MonoBehaviour
         public int Price;
         public int Quantity;
     }
+   
 }
