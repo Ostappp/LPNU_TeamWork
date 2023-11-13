@@ -6,23 +6,32 @@ public class BoostControl : MonoBehaviour
     public float ShieldDurability = 5f;
     public float SlowTimeDurability = 5f;
 
+    private int shieldQuantity;
+    private int slowTimeQuantity;
+
     public GameObject ShieldPrefab;
     private GameObject shield;
 
     private bool isShieldActive = false;
     private bool isTimeSlowed = false;
     private bool isPaused = false;
-
+    private void Start()
+    {
+        shieldQuantity = PlayerPrefs.GetInt("Item_1_Quantity", 0);
+        slowTimeQuantity = PlayerPrefs.GetInt("Item_2_Quantity", 0);
+    }
     public void ActivateShield()
     {
-        if (!isShieldActive)
+        if (!isShieldActive && shieldQuantity > 0)
         {
             shield = Instantiate(ShieldPrefab, transform);
 
             StartCoroutine(ShieldTimer());
 
             isShieldActive = true;
-            Debug.Log("Activated shield");
+            shieldQuantity--;
+            PlayerPrefs.SetInt("Item_1_Quantity", shieldQuantity);
+            Debug.Log($"Activated shield\nShields: {shieldQuantity}");
         }
     }
 
@@ -53,14 +62,16 @@ public class BoostControl : MonoBehaviour
 
     public void SlowTime()
     {
-        if (!isTimeSlowed)
+        if (!isTimeSlowed && slowTimeQuantity > 0)
         {
-            Time.timeScale = .15f;
+            Time.timeScale = .5f;
 
             StartCoroutine(SlowTimeTimer());
 
             isTimeSlowed = true;
-            Debug.Log("Slow time");
+            slowTimeQuantity--;
+            PlayerPrefs.SetInt("Item_2_Quantity", slowTimeQuantity);
+            Debug.Log($"Slow time\nBoosts: {slowTimeQuantity}");
         }
     }
 
