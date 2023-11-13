@@ -2941,12 +2941,12 @@ PrefabInstance:
     - target: {fileID: 3770666718779421449, guid: e61c98da0f80c844185e77ea83cb3cc4,
         type: 3}
       propertyPath: m_text
-      value: Activate Boost
+      value: Activate Slow Time
       objectReference: {fileID: 0}
     - target: {fileID: 3770666718779421449, guid: e61c98da0f80c844185e77ea83cb3cc4,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.25
+      value: 23.65
       objectReference: {fileID: 0}
     - target: {fileID: 3770666718779421449, guid: e61c98da0f80c844185e77ea83cb3cc4,
         type: 3}
