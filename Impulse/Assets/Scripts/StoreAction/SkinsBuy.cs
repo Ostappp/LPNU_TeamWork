@@ -24,6 +24,8 @@ public class SkinsBuy : MonoBehaviour
         {
             int toggleState = PlayerPrefs.GetInt("Item_" + skinItems[i].ID + "_Toggle", 0);
             skinItems[i].Toggle.isOn = toggleState == 1;
+            if (skinItems[i].Toggle.isOn)
+                InventoryManager.Instance.SetSkin(skinItems[i]);
         }
     }
 
@@ -37,7 +39,7 @@ public class SkinsBuy : MonoBehaviour
             ShopManager.SpendMoney(Item.Price);
             Item.Toggle.isOn = true;
             PlayerPrefs.SetInt("Item_" + ButtonRef.ItemID + "_Toggle", 1);
-
+            InventoryManager.Instance.SetSkin(Item);
         }
 
     }
@@ -48,6 +50,8 @@ public class SkinsBuy : MonoBehaviour
         public int ID;
         public int Price;
         public Toggle Toggle;
+        public Texture Icon;
+        public Material Skin;
     }
 
 }
