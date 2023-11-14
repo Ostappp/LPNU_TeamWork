@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
         PauseMenu.SetActive(false);
     }
     private void Update()
