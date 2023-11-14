@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using TMPro;
 using System.Linq;
-using System;
 
 public class ShopManagerScr : MonoBehaviour
 {
@@ -19,8 +14,7 @@ public class ShopManagerScr : MonoBehaviour
         CoinsTXT.text = "Coins:" + coins.ToString();
 
         LoadQuantities();
-    }
-
+    }    
     void LoadQuantities()
     {
         for (int i = 0; i < shopItems.Length; i++)

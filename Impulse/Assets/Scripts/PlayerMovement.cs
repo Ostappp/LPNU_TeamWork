@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
         PauseMenu.SetActive(false);
     }
     private void Update()
@@ -34,7 +35,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
-            Debug.Log("Move right");
+            Debug.Log("Pause");
+        }
+        
+        //активувати щит
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GetComponent<BoostControl>().ActivateShield();
+            Debug.Log("Activate shield");
+        }
+        //сповільнит гру
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            GetComponent<BoostControl>().SlowTime();
+            Debug.Log("Slow game");
         }
     }
 
@@ -50,12 +64,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Time.timeScale = 0;
         PauseMenu.SetActive(true);
-        isPause = !isPause;
+        GetComponent<BoostControl>().PauseTimers();
+        isPause = true;
     }
     public void UnPauseGame()
     {
         PauseMenu.SetActive(false);
-        isPause = !isPause;
+        isPause = false;
+        GetComponent<BoostControl>().UnpauseTimers();
         Time.timeScale = 1;
     }
 }
