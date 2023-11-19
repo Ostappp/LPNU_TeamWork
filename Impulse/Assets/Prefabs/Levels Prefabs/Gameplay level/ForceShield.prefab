@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bdf6069bb82414fb90d3ad914fdb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveShieldSound: {fileID: 0}
-  DestroyShieldSound: {fileID: 0}
+  ActiveShieldSound: {fileID: 8300000, guid: efd5d2c8adc8884498af201926005c91, type: 3}
+  DestroyShieldSound: {fileID: 8300000, guid: efd5d2c8adc8884498af201926005c91, type: 3}
 --- !u!82 &5176178256786710680
 AudioSource:
   m_ObjectHideFlags: 0

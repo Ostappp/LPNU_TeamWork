@@ -98,11 +98,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void StopPlayer()
     {
-        if (DestroySound != null)
-        {
-            SoundSource.clip = DestroySound;
-            SoundSource.loop = false;
-        }
 
         GetComponent<CubeMovement>().enabled = false;
         Debug.Log("Player loose");
@@ -112,6 +107,13 @@ public class PlayerMovement : MonoBehaviour
         if (_objCollider != null && other.tag == "Obstacle")
         {
             other.gameObject.SetActive(false);
+            if (DestroySound != null)
+            {
+                SoundSource.clip = DestroySound;
+                SoundSource.loop = false;
+                SoundSource.volume = 1;
+                SoundSource.Play();
+            }
             StopPlayer();
             PlayerLoose?.Invoke();
         }
