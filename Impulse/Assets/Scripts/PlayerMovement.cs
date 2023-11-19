@@ -120,5 +120,9 @@ public class PlayerMovement : MonoBehaviour
             StopPlayer();
             PlayerWin?.Invoke();
         }
+        else if (_objCollider != null && other.tag == "ObjWithAudio")
+        {
+            other.GetComponent<AudioSource>().Play();
+        }
     }
 }

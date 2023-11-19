@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - StoreCurrency
   - RewardCount
+  - ObjWithAudio
   layers:
   - Default
   - TransparentFX

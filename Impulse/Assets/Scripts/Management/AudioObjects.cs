@@ -30,15 +30,7 @@ public class AudioObjects : MonoBehaviour
 
             if (ObjectsWithAudio != null)
             {
-                StartCoroutine(WaitForAudioObjects());
-                bool muteVolume = SettingsManager.Instance.IsVolumeMuted();
-                bool muteEnvironment = SettingsManager.Instance.IsEnvironmentMuted();
-                float elementBaseVolume = SettingsManager.Instance.GetCalulatedEnvironmentValue();
-                foreach (AudioElement element in ObjectsWithAudio)
-                {
-                    element.audio.mute = muteVolume || muteEnvironment;
-                    element.audio.volume = elementBaseVolume * element.volume;
-                }
+                StartCoroutine(WaitForAudioObjects());                
             }
 
         }
@@ -60,6 +52,14 @@ public class AudioObjects : MonoBehaviour
         while (ObjectsWithAudio.Any(e => e.audio == null))
         {
             yield return null;
+        }
+        bool muteVolume = SettingsManager.Instance.IsVolumeMuted();
+        bool muteEnvironment = SettingsManager.Instance.IsEnvironmentMuted();
+        float elementBaseVolume = SettingsManager.Instance.GetCalulatedEnvironmentValue();
+        foreach (AudioElement element in ObjectsWithAudio)
+        {
+            element.audio.mute = muteVolume || muteEnvironment;
+            element.audio.volume = elementBaseVolume * element.volume;
         }
     }
     [System.Serializable]
