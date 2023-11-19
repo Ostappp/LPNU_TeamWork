@@ -14,25 +14,26 @@ public class AudioObjects : MonoBehaviour
         SettingsManager.Instance.ChangedSettings += ChangeVolumeAndMute;
     }
 
+
     private void ChangeVolumeAndMute()
     {
-        if(LevelMusic != null)
+        if (LevelMusic != null)
         {
             LevelMusic.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsMusicMuted();
             LevelMusic.volume = SettingsManager.Instance.GetCalulatedMusicValue();
         }
-        
 
-        foreach (AudioElement element in ObjectsWithAudio)
-        {
-            element.audio.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsEnvironmentMuted();
-            element.audio.volume = SettingsManager.Instance.GetCalulatedEnvironmentValue() * element.volume;
-        }
+        if (ObjectsWithAudio != null)
+            foreach (AudioElement element in ObjectsWithAudio)
+            {
+                element.audio.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsEnvironmentMuted();
+                element.audio.volume = SettingsManager.Instance.GetCalulatedEnvironmentValue() * element.volume;
+            }
     }
     [System.Serializable]
     public struct AudioElement
     {
-        [Range(0,1f)]
+        [Range(0, 1f)]
         public float volume;
         public AudioSource audio;
     }

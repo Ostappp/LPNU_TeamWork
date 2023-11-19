@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class CubeMovement : MonoBehaviour
 {
@@ -9,10 +8,15 @@ public class CubeMovement : MonoBehaviour
     private float currentSpeed; // Поточна швидкість куба
 
     private bool isMoving = true;
+    public float timeBeforeFullSpeed = 5f;
+    private int timerCount = 10;
+    private int tmpTimerCount;
 
     void Start()
     {
-        currentSpeed = initialSpeed; // Встановлюємо початкову швидкість
+        tmpTimerCount = timerCount;
+        currentSpeed = 0; // Встановлюємо початкову швидкість
+        StartCoroutine(RestartTimer());
     }
 
     void Update()
@@ -23,8 +27,17 @@ public class CubeMovement : MonoBehaviour
 
             // Збільшуємо поточну швидкість з часом
             currentSpeed += accelerationRate * Time.deltaTime;
-            
         }
+    }
 
+    IEnumerator RestartTimer()
+    {
+        while (tmpTimerCount > 0)
+        {
+            yield return new WaitForSeconds(timeBeforeFullSpeed / timerCount);
+            tmpTimerCount--;
+            currentSpeed += initialSpeed / timerCount;
+        }
+        Debug.Log($"End of slow\ncurrent speed: {currentSpeed}");
     }
 }

@@ -31,10 +31,20 @@ public class EndGameEvents : MonoBehaviour
     }
     void GameWin()
     {
-        GameObject coinsText = GameObject.Find("CoinsCount");
-        coinsText.GetComponent<TextMeshProUGUI>().text = Reward.ToString();
-
-
         WinView?.SetActive(true);
+        GameObject coinsText = GameObject.Find("CoinsCount");
+        coinsText.GetComponent<TMP_Text>().text = Reward.ToString();
+
+        
+        RewardPlayer();
+    }
+    public void RewardPlayer()
+    {
+        int coins = PlayerPrefs.GetInt("Coins value", 0);
+        coins += Reward;
+        PlayerPrefs.SetInt("Coins value", coins);
+
+        GameObject bonusText = GameObject.Find("BonusCountInfo");
+        bonusText.GetComponent<TMP_Text>().text = $"Available x2 multipliers count: {PlayerPrefs.GetInt("Item_3_Quantity", 0)}";
     }
 }

@@ -15,7 +15,7 @@ public class CameraFollowPlayer : MonoBehaviour
     void LateUpdate()
     {
         if (_isPlaying)
-            transform.position = new Vector3(0f, 2f, _playerPosition.position.z + offset.z);
+            transform.position = new Vector3(offset.x, offset.y, _playerPosition.position.z + offset.z);
     }
     private void StopFollow()
     {

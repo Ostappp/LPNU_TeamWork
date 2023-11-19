@@ -312,7 +312,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.16862746}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1057,6 +1057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e56ea5209c05cb44b14a69e0a258434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusButton: {fileID: 5177780004025971426}
+  endGameEvents: {fileID: 0}
 --- !u!114 &8473784262854721279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,7 +1502,7 @@ GameObject:
   - component: {fileID: 5093165810842804569}
   - component: {fileID: 5635267629576473664}
   m_Layer: 5
-  m_Name: Info
+  m_Name: BonusCountInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
