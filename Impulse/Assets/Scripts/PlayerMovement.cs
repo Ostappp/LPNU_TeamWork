@@ -21,11 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public Action PlayerWin;
     private void Start()
     {
-        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
-        PauseMenu.SetActive(false);
-        _objCollider = GetComponent<Collider>();
-        SoundSource = GetComponent<AudioSource>();
-        
+
+        PlayerInit();
     }
     private void Update()
     {
@@ -62,6 +59,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //private void OnLevelWasLoaded(int level)
+    //{
+    //    PlayerInit();
+    //}
+
+    private void PlayerInit()
+    {
+        PauseMenu.SetActive(false);
+        _objCollider = GetComponent<Collider>();
+        SoundSource = GetComponent<AudioSource>();
+        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
+        
+    }
+
     // Переміщення персонажа на певний ряд
     private void MoveToLane(int targetLane)
     {
@@ -74,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Time.timeScale = 0;
         PauseMenu.SetActive(true);
+        PauseMenu.GetComponent<SoundSettings>().InitSoundSettings();
         GetComponent<BoostControl>().PauseTimers();
         isPause = true;
     }

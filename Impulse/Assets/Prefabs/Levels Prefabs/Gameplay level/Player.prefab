@@ -2175,8 +2175,8 @@ GameObject:
   - component: {fileID: 556362878617836355}
   - component: {fileID: 400546986688169700}
   - component: {fileID: 8213607682912481152}
-  - component: {fileID: 9082551415051081268}
   - component: {fileID: 7084910432323442481}
+  - component: {fileID: 9082551415051081268}
   m_Layer: 5
   m_Name: LeaveButton
   m_TagString: Untagged
@@ -2242,6 +2242,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7084910432323442481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491301799130079708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404cd11722c81bf4eb52c73f88bbebd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9082551415051081268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,18 +2322,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7084910432323442481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3491301799130079708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404cd11722c81bf4eb52c73f88bbebd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3803928919899082205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   laneWidth: 2
   currentLane: 1
   maxLanes: 3
-  PauseMenu: {fileID: 7711349035464188880}
+  PauseMenu: {fileID: 2485384295991900152}
   DestroySound: {fileID: 0}
 --- !u!114 &4603248110423234372
 MonoBehaviour:
@@ -3114,7 +3114,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 50
   accelerationRate: 10
-  stopPositionZ: 50
+  timeBeforeFullSpeed: 5
+--- !u!114 &4447856056772372342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190416771384287236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369b5353ebcad394da1483382eafe932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShieldDurability: 3
+  SlowTimeDurability: 3
+  ShieldPrefab: {fileID: 7432193680293860519, guid: 7fdbf418982a5104f94c731c887ebad2,
+    type: 3}
 --- !u!54 &3418829983954760256
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3142,22 +3158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4447856056772372342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6190416771384287236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 369b5353ebcad394da1483382eafe932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShieldDurability: 3
-  SlowTimeDurability: 3
-  ShieldPrefab: {fileID: 7432193680293860519, guid: 7fdbf418982a5104f94c731c887ebad2,
-    type: 3}
 --- !u!1 &6420899486185977488
 GameObject:
   m_ObjectHideFlags: 0

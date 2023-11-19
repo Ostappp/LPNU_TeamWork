@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class AudioObjects : MonoBehaviour
@@ -8,27 +10,57 @@ public class AudioObjects : MonoBehaviour
     public AudioSource LevelMusic;
     public List<AudioElement> ObjectsWithAudio;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        ChangeVolumeAndMute();
-        SettingsManager.Instance.ChangedSettings += ChangeVolumeAndMute;
-    }
+        StartCoroutine(WaitForSettingsManager());
 
+    }
 
     private void ChangeVolumeAndMute()
     {
-        if (LevelMusic != null)
+        Debug.Log($"SettingsManager.Instance != null: {SettingsManager.Instance != null}");
+
+        if (SettingsManager.Instance != null)
         {
-            LevelMusic.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsMusicMuted();
-            LevelMusic.volume = SettingsManager.Instance.GetCalulatedMusicValue();
+            if (LevelMusic != null)
+            {
+                LevelMusic.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsMusicMuted();
+                LevelMusic.volume = SettingsManager.Instance.GetCalulatedMusicValue();
+            }
+
+            if (ObjectsWithAudio != null)
+            {
+                StartCoroutine(WaitForAudioObjects());
+                bool muteVolume = SettingsManager.Instance.IsVolumeMuted();
+                bool muteEnvironment = SettingsManager.Instance.IsEnvironmentMuted();
+                float elementBaseVolume = SettingsManager.Instance.GetCalulatedEnvironmentValue();
+                foreach (AudioElement element in ObjectsWithAudio)
+                {
+                    element.audio.mute = muteVolume || muteEnvironment;
+                    element.audio.volume = elementBaseVolume * element.volume;
+                }
+            }
+
         }
 
-        if (ObjectsWithAudio != null)
-            foreach (AudioElement element in ObjectsWithAudio)
-            {
-                element.audio.mute = SettingsManager.Instance.IsVolumeMuted() || SettingsManager.Instance.IsEnvironmentMuted();
-                element.audio.volume = SettingsManager.Instance.GetCalulatedEnvironmentValue() * element.volume;
-            }
+
+    }
+    private IEnumerator WaitForSettingsManager()
+    {
+        while (SettingsManager.Instance == null)
+        {
+            yield return null;
+        }
+        ChangeVolumeAndMute();
+        SettingsManager.Instance.ChangedSettings -= ChangeVolumeAndMute;
+        SettingsManager.Instance.ChangedSettings += ChangeVolumeAndMute;
+    }
+    private IEnumerator WaitForAudioObjects()
+    {
+        while (ObjectsWithAudio.Any(e => e.audio == null))
+        {
+            yield return null;
+        }
     }
     [System.Serializable]
     public struct AudioElement
