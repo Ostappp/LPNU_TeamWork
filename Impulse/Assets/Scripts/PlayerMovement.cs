@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             PauseGame();
             Debug.Log("Pause");
         }
-        
+
         //активувати щит
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         _objCollider = GetComponent<Collider>();
         SoundSource = GetComponent<AudioSource>();
         GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
-        
+
     }
 
     // Переміщення персонажа на певний ряд
@@ -121,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
         {
             StopPlayer();
             PlayerWin?.Invoke();
+            int sceneId = SceneManager.GetActiveScene().buildIndex;
+            if (sceneId < 5)
+            {
+                PlayerPrefs.SetInt($"Level{sceneId + 1}_Access", 1);
+            }
+
         }
         else if (_objCollider != null && other.tag == "ObjWithAudio")
         {

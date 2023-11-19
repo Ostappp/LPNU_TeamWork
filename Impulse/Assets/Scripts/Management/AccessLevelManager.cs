@@ -8,7 +8,7 @@ public class AccessLevelManager : MonoBehaviour
     [SerializeField]
     public List<Button> levels;
 
-    private void Start()
+    private void OnEnable()
     {
         if (levels != null && levels.Count > 1)
         {
@@ -18,7 +18,5 @@ public class AccessLevelManager : MonoBehaviour
                 levels[i].interactable = PlayerPrefs.GetInt($"Level{i + 1}_Access", 0) > 0;
             }
         }
-            
-
     }
 }
