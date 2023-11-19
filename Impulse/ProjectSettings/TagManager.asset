@@ -9,6 +9,7 @@ TagManager:
   - Actors
   - Teleport
   - Obstacle
+  - RewardCount
   layers:
   - Default
   - TransparentFX
