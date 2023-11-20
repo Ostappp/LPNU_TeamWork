@@ -12,8 +12,9 @@ public class SkinManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            DontDestroyOnLoad(gameObject);
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+            
         }
         else if (Instance != this)
         {

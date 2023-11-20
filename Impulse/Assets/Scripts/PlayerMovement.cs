@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Action PlayerLoose;
     public Action PlayerWin;
-    private void Start()
+    private void OnEnable()
     {
 
         PlayerInit();
@@ -70,8 +70,16 @@ public class PlayerMovement : MonoBehaviour
         PauseMenu.SetActive(false);
         _objCollider = GetComponent<Collider>();
         SoundSource = GetComponent<AudioSource>();
-        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
+        StartCoroutine(WaitForSkinManager());
 
+    }
+    private IEnumerator WaitForSkinManager()
+    {
+        while (SkinManager.Instance == null)
+        {
+            yield return null;
+        }
+        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
     }
 
     // Переміщення персонажа на певний ряд
