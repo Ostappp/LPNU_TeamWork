@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class CubeMovement : MonoBehaviour
 {
     public float initialSpeed = 1.0f; // Початкова швидкість куба
     public float accelerationRate = 0.1f; // Коефіцієнт прискорення
     private float currentSpeed; // Поточна швидкість куба
-    public float stopPositionZ = 50f; // Зупинити гравця при досягненні цієї позиції по осі Z
 
     private bool isMoving = true;
+    public float timeBeforeFullSpeed = 5f;
+    private int timerCount = 10;
+    private int tmpTimerCount;
 
     void Start()
     {
-        currentSpeed = initialSpeed; // Встановлюємо початкову швидкість
+        tmpTimerCount = timerCount;
+        currentSpeed = 0; // Встановлюємо початкову швидкість
+        StartCoroutine(RestartTimer());
     }
 
     void Update()
@@ -24,13 +27,17 @@ public class CubeMovement : MonoBehaviour
 
             // Збільшуємо поточну швидкість з часом
             currentSpeed += accelerationRate * Time.deltaTime;
-            if (transform.position.z >= stopPositionZ)
-            {
-                isMoving = false;
-                // Зупинити гравця
-                // Опціонально, ви можете викликати інші функції або виконати інші дії тут, коли гравець зупинився.
-            }
         }
+    }
 
+    IEnumerator RestartTimer()
+    {
+        while (tmpTimerCount > 0)
+        {
+            yield return new WaitForSeconds(timeBeforeFullSpeed / timerCount);
+            tmpTimerCount--;
+            currentSpeed += initialSpeed / timerCount;
+        }
+        Debug.Log($"End of slow\ncurrent speed: {currentSpeed}");
     }
 }

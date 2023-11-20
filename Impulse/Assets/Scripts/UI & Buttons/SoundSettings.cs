@@ -10,6 +10,10 @@ public class SoundSettings : MonoBehaviour
 
     private void Start()
     {
+        InitSoundSettings();
+    }
+    public void InitSoundSettings()
+    {
         Volume.Slider.value = SettingsManager.Instance.GetVolumeValue();
         Music.Slider.value = SettingsManager.Instance.GetMusicValue();
         Environment.Slider.value = SettingsManager.Instance.GetEnvironmentValue();
@@ -23,6 +27,7 @@ public class SoundSettings : MonoBehaviour
         Music.MuteButton.SetOriginalIcon(!SettingsManager.Instance.IsMusicMuted());
         Environment.MuteButton.SetOriginalIcon(!SettingsManager.Instance.IsEnvironmentMuted());
 
+        Debug.Log($"{SettingsManager.Instance.GetVolumeValue()}|{SettingsManager.Instance.GetMusicValue()}|{SettingsManager.Instance.GetEnvironmentValue()}");
     }
 
     public void InputValue_Volume()

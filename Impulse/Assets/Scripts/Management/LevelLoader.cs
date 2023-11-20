@@ -9,6 +9,6 @@ public class LevelLoader : MonoBehaviour
     public void LoadScene(int sceneId)
     {
         SceneManager.LoadScene(sceneId);
-        Thread.Sleep(2000);
+        Debug.Log($"Load scene with id: {sceneId}");
     }
 }

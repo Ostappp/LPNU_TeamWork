@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,10 +14,16 @@ public class PlayerMovement : MonoBehaviour
     private bool isPause;
     public GameObject PauseMenu;
 
-    private void Start()
+    public AudioClip DestroySound;
+    private AudioSource SoundSource;
+    private Collider _objCollider;
+
+    public Action PlayerLoose;
+    public Action PlayerWin;
+    private void OnEnable()
     {
-        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
-        PauseMenu.SetActive(false);
+
+        PlayerInit();
     }
     private void Update()
     {
@@ -37,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             PauseGame();
             Debug.Log("Pause");
         }
-        
+
         //активувати щит
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -52,6 +60,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //private void OnLevelWasLoaded(int level)
+    //{
+    //    PlayerInit();
+    //}
+
+    private void PlayerInit()
+    {
+        PauseMenu.SetActive(false);
+        _objCollider = GetComponent<Collider>();
+        SoundSource = GetComponent<AudioSource>();
+        StartCoroutine(WaitForSkinManager());
+
+    }
+    private IEnumerator WaitForSkinManager()
+    {
+        while (SkinManager.Instance == null)
+        {
+            yield return null;
+        }
+        GetComponent<Renderer>().material = SkinManager.Instance.GetSkin();
+    }
+
     // Переміщення персонажа на певний ряд
     private void MoveToLane(int targetLane)
     {
@@ -64,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Time.timeScale = 0;
         PauseMenu.SetActive(true);
+        PauseMenu.GetComponent<SoundSettings>().InitSoundSettings();
         GetComponent<BoostControl>().PauseTimers();
         isPause = true;
     }
@@ -73,5 +104,42 @@ public class PlayerMovement : MonoBehaviour
         isPause = false;
         GetComponent<BoostControl>().UnpauseTimers();
         Time.timeScale = 1;
+    }
+    private void StopPlayer()
+    {
+
+        GetComponent<CubeMovement>().enabled = false;
+        Debug.Log("Player loose");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_objCollider != null && other.tag == "Obstacle")
+        {
+            other.gameObject.SetActive(false);
+            if (DestroySound != null)
+            {
+                SoundSource.clip = DestroySound;
+                SoundSource.loop = false;
+                SoundSource.volume = 1;
+                SoundSource.Play();
+            }
+            StopPlayer();
+            PlayerLoose?.Invoke();
+        }
+        else if (_objCollider != null && other.tag == "Teleport")
+        {
+            StopPlayer();
+            PlayerWin?.Invoke();
+            int sceneId = SceneManager.GetActiveScene().buildIndex;
+            if (sceneId < 5)
+            {
+                PlayerPrefs.SetInt($"Level{sceneId + 1}_Access", 1);
+            }
+
+        }
+        else if (_objCollider != null && other.tag == "ObjWithAudio")
+        {
+            other.GetComponent<AudioSource>().Play();
+        }
     }
 }

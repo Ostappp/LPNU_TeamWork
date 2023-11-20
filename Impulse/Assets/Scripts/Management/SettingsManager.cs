@@ -23,15 +23,7 @@ public class SettingsManager : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
 
         _volumeValue = PlayerPrefs.GetFloat("volumeValue", 1);
         _musicValue = PlayerPrefs.GetFloat("musicValue", 1);

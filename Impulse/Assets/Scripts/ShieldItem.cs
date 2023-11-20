@@ -16,7 +16,8 @@ public class ShieldItem : MonoBehaviour
         if(ActiveShieldSound != null)
         {
             SoundSource.clip = ActiveShieldSound;
-            SoundSource.loop = true;
+            SoundSource.loop = false;
+            SoundSource.Play();
         }
         
     }
@@ -27,6 +28,7 @@ public class ShieldItem : MonoBehaviour
         {
             SoundSource.clip = DestroyShieldSound;
             SoundSource.loop = false;
+            SoundSource.Play();
         }
         
         Destroy(gameObject,0.2f);

@@ -10,6 +10,8 @@ TagManager:
   - Teleport
   - Obstacle
   - StoreCurrency
+  - RewardCount
+  - ObjWithAudio
   layers:
   - Default
   - TransparentFX
