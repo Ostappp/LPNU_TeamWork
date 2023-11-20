@@ -3248,7 +3248,7 @@ PrefabInstance:
     - target: {fileID: 4603248110423234372, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
       propertyPath: initialSpeed
-      value: 80
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4603248110423234372, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
@@ -3258,7 +3258,7 @@ PrefabInstance:
     - target: {fileID: 4603248110423234372, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
       propertyPath: accelerationRate
-      value: 20
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6190416771384287236, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
@@ -3278,7 +3278,7 @@ PrefabInstance:
     - target: {fileID: 7849634350112221666, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7849634350112221666, guid: a5cb49fa669525141b37053cbe80bfea,
         type: 3}
@@ -15425,6 +15425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937114745810709508, guid: 3c9fea220eff92747b4ac872ded4d633,
+        type: 3}
+      propertyPath: offset.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7937114745810709508, guid: 3c9fea220eff92747b4ac872ded4d633,
         type: 3}
