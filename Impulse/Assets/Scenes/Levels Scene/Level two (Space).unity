@@ -3657,7 +3657,7 @@ PrefabInstance:
     - target: {fileID: 7289948331520979869, guid: c027fd02d2b363b468abf64a30eb21d4,
         type: 3}
       propertyPath: m_text
-      value: Play next again
+      value: Play next level
       objectReference: {fileID: 0}
     - target: {fileID: 7797517409879143713, guid: c027fd02d2b363b468abf64a30eb21d4,
         type: 3}
